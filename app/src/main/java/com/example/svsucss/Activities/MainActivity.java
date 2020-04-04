@@ -1,7 +1,8 @@
-package com.example.svsucss;
+package com.example.svsucss.Activities;
 
 import android.os.Bundle;
 
+import com.example.svsucss.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -23,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
                 R.id.navigation_about_us, R.id.navigation_my_contributions, R.id.navigation_add_contribution,R.id.navigation_latest_updates, R.id.navigation_contact_us)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
-        NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
+//        NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(navView, navController);
     }
 
