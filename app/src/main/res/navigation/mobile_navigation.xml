@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/navigation_add_contribution">
+
+    <fragment
+        android:id="@+id/navigation_about_us"
+        android:name="com.example.svsucss.HomeFragments.home.HomeFragment"
+        android:label="@string/title_about_us"
+        tools:layout="@layout/fragment_home" />
+
+    <fragment
+        android:id="@+id/navigation_my_contributions"
+        android:name="com.example.svsucss.HomeFragments.myContribution.MyContribution"
+        android:label="@string/title_my_contributions"
+        tools:layout="@layout/fragment_my_contribution" />
+
+    <fragment
+        android:id="@+id/navigation_add_contribution"
+        android:name="com.example.svsucss.HomeFragments.notifications.NotificationsFragment"
+        android:label="@string/title_add_contribution"
+        tools:layout="@layout/fragment_notifications" />
+
+    <fragment
+        android:id="@+id/navigation_latest_updates"
+        android:name="com.example.svsucss.HomeFragments.dashboard.DashboardFragment"
+        android:label="@string/title_latest_updates"
+        tools:layout="@layout/fragment_dashboard" />
+
+    <fragment
+        android:id="@+id/navigation_contact_us"
+        android:name="com.example.svsucss.HomeFragments.contactUs.ContactUsFragment"
+        android:label="@string/title_contact_us"
+        tools:layout="@layout/fragment_contact_us" />
+
+</navigation>
