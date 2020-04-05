@@ -1,10 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:layout_gravity="center_horizontal"
+    android:gravity="center_horizontal"
     tools:context=".HomeFragments.addContribution.AddContriutionFragment">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_height="match_parent"
+        >
+
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
 
     <ImageView
         android:id="@+id/imageView"
@@ -41,7 +58,7 @@
         android:id="@+id/layout_title"
         android:gravity="center_horizontal"
         app:layout_constraintTop_toBottomOf="@id/qout"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="20dp"
         android:background="@color/colorPrimary"
         >
 
@@ -64,12 +81,12 @@
     </LinearLayout>
 
     <TextView
-        android:id="@+id/studentorteacher"
+        android:id="@+id/detail_type"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Who are you?"
         android:textColor="@color/gray"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="30dp"
         android:layout_marginBottom="10dp"
         app:layout_constraintTop_toBottomOf="@+id/layout_title"
         android:textSize="20dp"
@@ -92,7 +109,7 @@
         android:padding="10dp"
         app:layout_constraintCircleRadius="5dp"
         android:layout_marginTop="10dp"
-        app:layout_constraintTop_toBottomOf="@+id/studentorteacher"
+        app:layout_constraintTop_toBottomOf="@+id/detail_type"
         android:baselineAligned="false">
 
     <LinearLayout
@@ -117,8 +134,8 @@
 
             <ImageView
                 android:id="@+id/iv_student"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
                 android:layout_marginTop="5dp"
                 android:layout_marginBottom="5dp"
                 android:gravity="center_horizontal"
@@ -161,8 +178,8 @@
 
             <ImageView
                 android:id="@+id/iv_staff"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
                 android:layout_marginTop="5dp"
                 android:layout_marginBottom="5dp"
                 android:gravity="center_horizontal"
@@ -184,26 +201,281 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:visibility="gone"
-        android:layout_marginTop="20dp"
-        android:gravity="center_horizontal"
-        app:layout_constraintBottom_toBottomOf="@id/selection"
-        android:id="@+id/student_details"
-        android:orientation="vertical"
-        >
+        android:layout_height="10dp"
+        android:id="@+id/temp"
+        android:elevation="10dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:padding="10dp"
+        app:layout_constraintCircleRadius="5dp"
+        app:layout_constraintTop_toBottomOf="@+id/selection"
+        android:baselineAligned="false"
+        android:orientation="horizontal"></LinearLayout>
 
-    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:id="@+id/auth"
+        android:visibility="gone"
+        app:layout_constraintTop_toBottomOf="@+id/temp"
+        android:gravity="center_horizontal">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:visibility="gone"
-        android:layout_marginTop="20dp"
-        app:layout_constraintBottom_toBottomOf="@id/selection"
-        android:id="@+id/staff_details"
-        android:orientation="vertical"
-        >
+        android:id="@+id/student_details"
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/studet_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginTop="8dp"
+            android:ems="10"
+            android:gravity=""
+            android:padding="10dp"
+            android:elevation="10dp"
+            android:layout_marginBottom="5dp"
+            android:background="@drawable/edittext_border"
+            android:hint="Enter Name"
+            android:layout_gravity="center_horizontal"
+            android:inputType="textPersonName"
+            app:layout_constraintVertical_bias="0.353"
+            android:drawablePadding="10dp"
+            android:paddingLeft="10dp"
+            android:drawableTint="@color/gray"
+            android:drawableLeft="@drawable/ic_enrollment_designation"/>
+
+
+        <EditText
+            android:id="@+id/student_enrollment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:ems="10"
+            android:padding="10dp"
+            android:background="@drawable/edittext_border"
+            android:layout_gravity="center_horizontal"
+            android:hint="Enter Enrollment Number"
+            android:layout_marginBottom="10dp"
+            android:inputType="number"
+            android:drawablePadding="10dp"
+            android:elevation="10dp"
+            android:paddingLeft="10dp"
+            android:drawableTint="@color/gray"
+            android:drawableLeft="@drawable/ic_enrollment_designation" />
 
     </LinearLayout>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:id="@+id/staff_details"
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/staff_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginTop="8dp"
+            android:ems="10"
+            android:gravity=""
+            android:padding="10dp"
+            android:elevation="10dp"
+            android:layout_marginBottom="5dp"
+            android:background="@drawable/edittext_border"
+            android:hint="Enter Name"
+            android:layout_gravity="center_horizontal"
+            android:inputType="textPersonName"
+            app:layout_constraintVertical_bias="0.353"
+            android:drawablePadding="10dp"
+            android:paddingLeft="10dp"
+            android:drawableTint="@color/gray"
+            android:drawableLeft="@drawable/ic_enrollment_designation"/>
+
+
+        <EditText
+            android:id="@+id/staff_designation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginTop="8dp"
+            android:ems="10"
+            android:padding="10dp"
+            android:background="@drawable/edittext_border"
+            android:layout_gravity="center_horizontal"
+            android:hint="Enter Designation"
+            android:layout_marginBottom="10dp"
+            android:inputType="text"
+            android:drawablePadding="10dp"
+            android:elevation="10dp"
+            android:paddingLeft="10dp"
+            android:drawableTint="@color/gray"
+            android:drawableLeft="@drawable/ic_enrollment_designation" />
+    </LinearLayout>
+
+        <Button
+            android:id="@+id/auth_submit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="SUBMIT"
+            android:padding="10dp"
+            android:elevation="10dp"
+            android:background="@color/colorPrimary"
+            android:textColor="@color/white"
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="40dp"
+            android:layout_marginTop="20dp"
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/other_details"
+        android:visibility="gone"
+        app:layout_constraintTop_toBottomOf="@id/detail_type"
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/contri_date"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginTop="8dp"
+            android:ems="10"
+            android:gravity=""
+            android:padding="10dp"
+            android:elevation="10dp"
+            android:layout_marginBottom="5dp"
+            android:background="@drawable/edittext_border"
+            android:hint="Enter Contribution Date"
+            android:layout_gravity="center_horizontal"
+            android:inputType="date"
+            app:layout_constraintVertical_bias="0.353"
+            android:drawablePadding="10dp"
+            android:paddingLeft="10dp"
+            android:drawableTint="@color/gray"
+            android:drawableLeft="@drawable/ic_enrollment_designation"/>
+
+        <EditText
+            android:id="@+id/contri_place"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginTop="8dp"
+            android:ems="10"
+            android:gravity=""
+            android:padding="10dp"
+            android:elevation="10dp"
+            android:layout_marginBottom="5dp"
+            android:background="@drawable/edittext_border"
+            android:hint="Enter Contribution Location"
+            android:layout_gravity="center_horizontal"
+            android:inputType="textPostalAddress"
+            app:layout_constraintVertical_bias="0.353"
+            android:drawablePadding="10dp"
+            android:paddingLeft="10dp"
+            android:drawableTint="@color/gray"
+            android:drawableLeft="@drawable/ic_enrollment_designation"/>
+
+        <EditText
+            android:id="@+id/packed_food"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginTop="8dp"
+            android:ems="10"
+            android:gravity=""
+            android:padding="10dp"
+            android:elevation="10dp"
+            android:layout_marginBottom="5dp"
+            android:background="@drawable/edittext_border"
+            android:hint="No. of Packed Food Distributed"
+            android:layout_gravity="center_horizontal"
+            android:inputType="number"
+            app:layout_constraintVertical_bias="0.353"
+            android:drawablePadding="10dp"
+            android:paddingLeft="10dp"
+            android:drawableTint="@color/gray"
+            android:drawableLeft="@drawable/ic_enrollment_designation"/>
+
+        <EditText
+            android:id="@+id/dry_ration"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginTop="8dp"
+            android:ems="10"
+            android:gravity=""
+            android:padding="10dp"
+            android:elevation="10dp"
+            android:layout_marginBottom="5dp"
+            android:background="@drawable/edittext_border"
+            android:hint="Dry Ration Contributed(in Kgs)"
+            android:layout_gravity="center_horizontal"
+            android:inputType="numberDecimal"
+            app:layout_constraintVertical_bias="0.353"
+            android:drawablePadding="10dp"
+            android:paddingLeft="10dp"
+            android:drawableTint="@color/gray"
+            android:drawableLeft="@drawable/ic_enrollment_designation"/>
+
+        <EditText
+            android:id="@+id/sponsi"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginTop="8dp"
+            android:ems="10"
+            android:gravity=""
+            android:padding="10dp"
+            android:elevation="10dp"
+            android:layout_marginBottom="5dp"
+            android:background="@drawable/edittext_border"
+            android:hint="Name of the Sponser"
+            android:layout_gravity="center_horizontal"
+            android:inputType="textPersonName"
+            app:layout_constraintVertical_bias="0.353"
+            android:drawablePadding="10dp"
+            android:paddingLeft="10dp"
+            android:drawableTint="@color/gray"
+            android:drawableLeft="@drawable/ic_enrollment_designation"/>
+
+        <Button
+            android:id="@+id/auth_submit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="SUBMIT"
+            android:padding="10dp"
+            android:elevation="10dp"
+            android:background="@color/colorPrimary"
+            android:textColor="@color/white"
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="40dp"
+            android:layout_marginTop="20dp"
+            />
+
+    </LinearLayout>
+
+
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+</LinearLayout>
