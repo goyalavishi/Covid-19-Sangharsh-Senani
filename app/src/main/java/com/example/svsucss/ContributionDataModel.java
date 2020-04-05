@@ -4,21 +4,13 @@ import java.util.Date;
 
 public class ContributionDataModel {
 
-    int id;
-    int addersid;
+    String addersid;
     Date date;
     String place;
     String sponsi;
     int packed_food;
     float dry_ration;
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
 
     public Date getDate() {
         return date;
@@ -40,11 +32,11 @@ public class ContributionDataModel {
         return dry_ration;
     }
 
-    public int getAddersid() {
+    public String getAddersid() {
         return addersid;
     }
 
-    public void setAddersid(int addersid) {
+    public void setAddersid(String addersid) {
         this.addersid = addersid;
     }
 

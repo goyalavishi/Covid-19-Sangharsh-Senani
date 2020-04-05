@@ -59,7 +59,6 @@ public class MyPreferences {
         editor.commit();
     }
 
-
     public void setFirstTimeLaunch(boolean isFirstTime) {
         editor.putBoolean(IS_FIRST_TIME_LAUNCH, isFirstTime);
         editor.commit();
@@ -77,7 +76,7 @@ public class MyPreferences {
 
     public String getTypeOfUser()
     {
-        return pref.getString(TYPE_OF_USER,"u");
+        return pref.getString(TYPE_OF_USER,"student");
     }
 
 }

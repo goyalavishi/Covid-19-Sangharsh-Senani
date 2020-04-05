@@ -2,17 +2,17 @@ package com.example.svsucss;
 
 public class UserDataModel {
 
-    int id;
+    String id;
     String userType;
     String name;
     String enrollmentNumber;
     String Designation;
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 

@@ -27,7 +27,7 @@
         android:id="@+id/navigation_latest_updates"
         android:name="com.example.svsucss.HomeFragments.leaderboard.LeaderboardFragment"
         android:label="@string/title_latest_updates"
-        tools:layout="@layout/fragment_dashboard" />
+        tools:layout="@layout/fragment_leaderboard" />
 
     <fragment
         android:id="@+id/navigation_contact_us"

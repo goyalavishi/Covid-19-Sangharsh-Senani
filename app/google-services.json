@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "276674476219",
+    "firebase_url": "https://css-haryana.firebaseio.com",
+    "project_id": "css-haryana",
+    "storage_bucket": "css-haryana.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:276674476219:android:9f5d314cf1665a45dd119e",
+        "android_client_info": {
+          "package_name": "com.example.svsucss"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "276674476219-4vggqutt4u7jbg52dhtsubmmkuoancak.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.svsucss",
+            "certificate_hash": "58b71f275cf96a358ec839665a1a855841de1a26"
+          }
+        },
+        {
+          "client_id": "276674476219-q1ud89ankp3lf0mktgovbqapl9iifsfs.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB34e1JgVhGKnKl83PmM3ISojqyhBcg-pE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "276674476219-q1ud89ankp3lf0mktgovbqapl9iifsfs.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
