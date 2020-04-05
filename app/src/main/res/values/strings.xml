@@ -13,4 +13,14 @@
     <string name="title_activity_splash_screen">SplashScreen</string>
     <string name="dummy_button">Dummy Button</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="copy_right" translatable="false">Copyrights © SVSU All Rights Reserved</string>
+    <string name="css_description">Protecting the well-being, safety and health of the citizens of Haryana is a top priority
+of the Government of Haryana. For this, the government is taking all necessary steps
+and is well prepared to face the challenge and threat posed by the growing epidemic
+of COVID 19 - Coronavirus.\n\nGovernment of Haryana have launched portal : (https://covidssharyana.in/) to enable the following:
+Covid-19 Sangharsh Senani\n\n
+1. Any interested shop / store owner (Kiryana/ vegetable/ milk/ chemist, etc.) can
+register to supply the required items\n\n2. Anyone who wants to help people by contributing to the fight against the
+            coronavirus can register</string>
+    <string name="css_title">Covid19 Sangharsh Senani</string>
 </resources>

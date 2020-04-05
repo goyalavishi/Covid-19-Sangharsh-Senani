@@ -7,9 +7,9 @@
 
     <fragment
         android:id="@+id/navigation_about_us"
-        android:name="com.example.svsucss.HomeFragments.home.HomeFragment"
+        android:name="com.example.svsucss.HomeFragments.aboutUs.AboutUsFragment"
         android:label="@string/title_about_us"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_about_us" />
 
     <fragment
         android:id="@+id/navigation_my_contributions"
@@ -19,13 +19,13 @@
 
     <fragment
         android:id="@+id/navigation_add_contribution"
-        android:name="com.example.svsucss.HomeFragments.notifications.NotificationsFragment"
+        android:name="com.example.svsucss.HomeFragments.addContribution.AddContriutionFragment"
         android:label="@string/title_add_contribution"
-        tools:layout="@layout/fragment_notifications" />
+        tools:layout="@layout/fragment_add_contribution" />
 
     <fragment
         android:id="@+id/navigation_latest_updates"
-        android:name="com.example.svsucss.HomeFragments.dashboard.DashboardFragment"
+        android:name="com.example.svsucss.HomeFragments.leaderboard.LeaderboardFragment"
         android:label="@string/title_latest_updates"
         tools:layout="@layout/fragment_dashboard" />
 

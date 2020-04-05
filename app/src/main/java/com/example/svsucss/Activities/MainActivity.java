@@ -1,6 +1,7 @@
 package com.example.svsucss.Activities;
 
 import android.os.Bundle;
+import android.view.Window;
 
 import com.example.svsucss.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;

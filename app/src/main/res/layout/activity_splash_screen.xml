@@ -25,7 +25,7 @@
         android:id="@+id/sena"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Sanrakshan Sena"
+        android:text="Sangharsh Senani"
         android:textColor="@color/colorAccent"
         android:layout_marginBottom="10dp"
         android:textStyle="bold"

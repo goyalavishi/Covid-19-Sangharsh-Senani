@@ -5,5 +5,10 @@
     <color name="colorAccent">#cdffcc</color>
     <color name="corona_red">#666634</color>
     <color name="white">#ffffff</color>
+    <color name="Silver">#C0C0C0</color>
+    <color name="shadow_color">#FFB9D7D7</color>
+    <color name="TransparentGrey">#7F000000</color>
+    <color name="gray">#808080</color>
+    <color name="black">#000000</color>
     <color name="black_overlay">#66000000</color>
 </resources>

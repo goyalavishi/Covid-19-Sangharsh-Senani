@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".HomeFragments.dashboard.DashboardFragment">
+    tools:context=".HomeFragments.leaderboard.LeaderboardFragment">
 
     <TextView
         android:id="@+id/text_dashboard"

@@ -1,4 +1,4 @@
-package com.example.svsucss.HomeFragments.dashboard;
+package com.example.svsucss.HomeFragments.leaderboard;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -14,7 +14,7 @@ import androidx.lifecycle.ViewModelProviders;
 
 import com.example.svsucss.R;
 
-public class DashboardFragment extends Fragment {
+public class LeaderboardFragment extends Fragment {
 
     private DashboardViewModel dashboardViewModel;
 
