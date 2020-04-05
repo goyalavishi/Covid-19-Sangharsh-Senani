@@ -28,6 +28,8 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.Calendar;
 import java.util.concurrent.Executor;
@@ -42,7 +44,7 @@ public class AddContriutionFragment extends Fragment {
     private TextView tv_student, tv_staff,tv_details;
     private EditText studentName,studentEnrollmentNumber,staffName,staffDesignation,date,place,sponsi,packedfood,dryration;
     private int mYear, mMonth, mDay;
-    private int currentSelected = 0;
+    private int currentSelected = 0,flag=0;
     MyPreferences myPreferences;
     Button submit;
     FirebaseAuth firebaseAuth;
@@ -162,35 +164,50 @@ public class AddContriutionFragment extends Fragment {
     void onSubmit()
     {
         validatefields();
-        firebaseAuth.signInAnonymously()
-                .addOnCompleteListener(getActivity(), new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-                            // Sign in success, update UI with the signed-in user's information
-                            Log.d(TAG, "signIn:success");
-                            FirebaseUser user = firebaseAuth.getCurrentUser();
+        if(userType.equals("student"))
+        {
+            userDataModel.setUserType(userType);
+            userDataModel.setName(studentName.getText().toString());
+            userDataModel.setEnrollmentNumber(studentEnrollmentNumber.getText().toString());
 
+            flag = 0;
+            db.collection("User").whereEqualTo("userType","student")
+                    .get()
+                    .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                        @Override
+                        public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                            if (task.isSuccessful()) {
+                                for (QueryDocumentSnapshot document : task.getResult()) {
+                                    if(document.getString("enrollment").equals(userDataModel.getEnrollmentNumber()))
+                                    {
+                                        myPreferences.setIsNotLogin(false);
+                                        tv_details.setText("Contribution Details");
+                                        layout_selection.setVisibility(View.GONE);
+                                        details.setVisibility(View.GONE);
+                                        layout_other_details.setVisibility(View.VISIBLE);
+                                        userDataModel.setId(document.getString("id"));
+                                        flag =1;
 
-                        } else {
-                            // If sign in fails, display a message to the user.
-                            Log.w(TAG, "signIn:failure", task.getException());
+                                    }
+                                }
+
+                                if(flag==0)
+                                {
+                                    Toast.makeText(getContext(),"Enter Correct Enrollment Number",Toast.LENGTH_LONG).show();
+                                    studentEnrollmentNumber.setError("Enter Correct Enrollment Number");
+
+                                }
+                            } else {
+                                Log.e(TAG, "Error getting documents: ", task.getException());
+                            }
                         }
+                    });
 
-                        userDataModel.setUserType(userType);
-                        if(userDataModel.getUserType().equals("student"))
-                        {
-                            userDataModel.setName(studentName.getText().toString());
-                            userDataModel.setEnrollmentNumber(studentEnrollmentNumber.getText().toString());
-                        }
-                    }
-                });
 
-        myPreferences.setIsNotLogin(false);
-        tv_details.setText("Contribution Details");
-        layout_selection.setVisibility(View.GONE);
-        details.setVisibility(View.GONE);
-        layout_other_details.setVisibility(View.VISIBLE);
+        }
+
+
+
     }
 
     void validatefields()
@@ -251,7 +268,7 @@ public class AddContriutionFragment extends Fragment {
         mDay = c.get(Calendar.DAY_OF_MONTH);
 
 
-        DatePickerDialog datePickerDialog = new DatePickerDialog(getActivity(),
+        DatePickerDialog datePickerDialog = new DatePickerDialog(getActivity(),R.style.DialogTheme,
                 new DatePickerDialog.OnDateSetListener() {
 
                     @Override
@@ -262,6 +279,7 @@ public class AddContriutionFragment extends Fragment {
 
                     }
                 }, mYear, mMonth, mDay);
+
         datePickerDialog.show();
     }
 }
