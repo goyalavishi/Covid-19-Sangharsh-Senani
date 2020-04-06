@@ -271,8 +271,12 @@ public class AddContriutionFragment extends Fragment {
                         public void onComplete(@NonNull Task<QuerySnapshot> task) {
                             if (task.isSuccessful()) {
                                 for (QueryDocumentSnapshot document : task.getResult()) {
-                                    if((document.getString("designation").equals(userDataModel.getDesignation().toString().toLowerCase()))&&(document.getString("name").equals(userDataModel.getName().toString().toLowerCase())))
+                                    Log.d("data",document.getData()+"");
+
+                                    if((document.getString("designation").toLowerCase().equals(userDataModel.getDesignation().toString().toLowerCase())))
                                     {
+                                        if(document.getString("name").toLowerCase().equals(userDataModel.getName().toString().toLowerCase()))
+                                        {
                                         myPreferences.setIsNotLogin(false);
                                         tv_details.setText("Contribution Details");
                                         layout_selection.setVisibility(View.GONE);
@@ -283,13 +287,38 @@ public class AddContriutionFragment extends Fragment {
                                         myPreferences.setUserName(document.getString("name"));
                                         flag =1;
                                     }
+                                    else
+                                        {
+                                            flag=2;
+                                        }
+                                    }
+                                    else
+                                    {
+                                        if(document.getString("name").toLowerCase().equals(userDataModel.getName().toString().toLowerCase()))
+                                        {
+                                            flag=3;
+                                        }
+                                    }
+
                                 }
 
                                 if(flag==0)
                                 {
+
                                     Toast.makeText(getContext(),"Enter Correct Details",Toast.LENGTH_LONG).show();
                                     staffDesignation.setError("Enter Correct Details");
                                     staffName.setError("Enter Correct Details");
+                                }
+
+                                else if(flag==2)
+                                {
+                                    staffName.setError("Enter Correct Name");
+
+                                }
+
+                                else if(flag==3)
+                                {
+                                    staffDesignation.setError("Enter Correct Designation");
                                 }
                             }
                             else {

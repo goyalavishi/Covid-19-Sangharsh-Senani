@@ -21,7 +21,7 @@ public class ContributionAdapter extends RecyclerView.Adapter<ContributionAdapte
     ArrayList<ContributionDataModel> contributionList;
     Context context;
 
-    ContributionAdapter(Context context,ArrayList<ContributionDataModel> contributionList)
+    public ContributionAdapter(Context context, ArrayList<ContributionDataModel> contributionList)
     {
         Log.d("Inside Adapter","Hello");
         this.context=context;
