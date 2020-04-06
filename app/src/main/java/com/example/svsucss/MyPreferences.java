@@ -17,6 +17,7 @@ public class MyPreferences {
     private static final String TYPE_OF_USER = "TypeOfUser";
     private static final String USER_ID = "UserId";
 
+    private static final String USER_NAME = "UserName";
 
 
 
@@ -39,6 +40,17 @@ public class MyPreferences {
     public String getUserId()
     {
         return pref.getString(USER_ID,"default");
+    }
+
+    public void setUserName(String userName)
+    {
+        editor.putString(USER_NAME,userName);
+        editor.commit();
+    }
+
+    public String getUserName()
+    {
+        return pref.getString(USER_NAME,"default");
     }
 
     public void saveString(String key, String value){

@@ -357,17 +357,19 @@
             android:ems="10"
             android:gravity=""
             android:padding="10dp"
+            android:focusableInTouchMode="true"
             android:elevation="10dp"
             android:layout_marginBottom="5dp"
             android:background="@drawable/edittext_border"
             android:hint="Enter Contribution Date"
+            android:focusable="true"
             android:layout_gravity="center_horizontal"
             android:inputType="date"
             app:layout_constraintVertical_bias="0.353"
             android:drawablePadding="10dp"
             android:paddingLeft="10dp"
             android:drawableTint="@color/gray"
-            android:drawableLeft="@drawable/ic_enrollment_designation"/>
+            android:drawableLeft="@drawable/ic_date"/>
 
         <EditText
             android:id="@+id/contri_place"
@@ -384,12 +386,14 @@
             android:background="@drawable/edittext_border"
             android:hint="Enter Contribution Location"
             android:layout_gravity="center_horizontal"
+            android:focusableInTouchMode="true"
+            android:focusable="true"
             android:inputType="textPostalAddress"
             app:layout_constraintVertical_bias="0.353"
             android:drawablePadding="10dp"
             android:paddingLeft="10dp"
             android:drawableTint="@color/gray"
-            android:drawableLeft="@drawable/ic_enrollment_designation"/>
+            android:drawableLeft="@drawable/ic_place"/>
 
         <EditText
             android:id="@+id/packed_food"
@@ -401,6 +405,8 @@
             android:ems="10"
             android:gravity=""
             android:padding="10dp"
+            android:focusableInTouchMode="true"
+            android:focusable="true"
             android:elevation="10dp"
             android:layout_marginBottom="5dp"
             android:background="@drawable/edittext_border"
@@ -411,7 +417,7 @@
             android:drawablePadding="10dp"
             android:paddingLeft="10dp"
             android:drawableTint="@color/gray"
-            android:drawableLeft="@drawable/ic_enrollment_designation"/>
+            android:drawableLeft="@drawable/ic_packedfood"/>
 
         <EditText
             android:id="@+id/dry_ration"
@@ -424,6 +430,8 @@
             android:gravity=""
             android:padding="10dp"
             android:elevation="10dp"
+            android:focusableInTouchMode="true"
+            android:focusable="true"
             android:layout_marginBottom="5dp"
             android:background="@drawable/edittext_border"
             android:hint="Dry Ration Contributed(in Kgs)"
@@ -433,7 +441,7 @@
             android:drawablePadding="10dp"
             android:paddingLeft="10dp"
             android:drawableTint="@color/gray"
-            android:drawableLeft="@drawable/ic_enrollment_designation"/>
+            android:drawableLeft="@drawable/ic_dry_ration"/>
 
         <EditText
             android:id="@+id/sponsi"
@@ -447,6 +455,8 @@
             android:padding="10dp"
             android:elevation="10dp"
             android:layout_marginBottom="5dp"
+            android:focusableInTouchMode="true"
+            android:focusable="true"
             android:background="@drawable/edittext_border"
             android:hint="Name of the Sponser"
             android:layout_gravity="center_horizontal"
@@ -455,10 +465,10 @@
             android:drawablePadding="10dp"
             android:paddingLeft="10dp"
             android:drawableTint="@color/gray"
-            android:drawableLeft="@drawable/ic_enrollment_designation"/>
+            android:drawableLeft="@drawable/ic_sponser"/>
 
         <Button
-            android:id="@+id/auth_submit"
+            android:id="@+id/other_details_submit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="SUBMIT"
@@ -470,10 +480,31 @@
             android:layout_marginRight="40dp"
             android:layout_marginTop="20dp"
             />
-
     </LinearLayout>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/layout_Thanks"
+        android:visibility="gone"
+        app:layout_constraintTop_toBottomOf="@id/detail_type"
+        android:orientation="vertical">
 
+        <Button
+            android:id="@+id/add_another"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="ADD ANOTHER CONTRIBUTION"
+            android:padding="10dp"
+            android:elevation="10dp"
+            android:background="@color/colorPrimary"
+            android:textColor="@color/white"
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="40dp"
+            android:layout_marginTop="20dp"
+            />
+
+    </LinearLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

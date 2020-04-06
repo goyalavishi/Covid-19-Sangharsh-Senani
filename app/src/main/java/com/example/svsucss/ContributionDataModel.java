@@ -1,18 +1,17 @@
 package com.example.svsucss;
 
-import java.util.Date;
-
 public class ContributionDataModel {
 
     String addersid;
-    Date date;
+    String date;
     String place;
     String sponsi;
-    int packed_food;
-    float dry_ration;
+    Long packed_food;
+    Double dry_ration;
+    String name;
 
 
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
@@ -24,11 +23,11 @@ public class ContributionDataModel {
         return sponsi;
     }
 
-    public int getPacked_food() {
+    public Long getPacked_food() {
         return packed_food;
     }
 
-    public float getDry_ration() {
+    public double getDry_ration() {
         return dry_ration;
     }
 
@@ -40,7 +39,7 @@ public class ContributionDataModel {
         this.addersid = addersid;
     }
 
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
     }
 
@@ -52,11 +51,19 @@ public class ContributionDataModel {
         this.sponsi = sponsi;
     }
 
-    public void setPacked_food(int packed_food) {
+    public void setPacked_food(Long packed_food) {
         this.packed_food = packed_food;
     }
 
-    public void setDry_ration(float dry_ration) {
+    public void setDry_ration(Double dry_ration) {
         this.dry_ration = dry_ration;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }
