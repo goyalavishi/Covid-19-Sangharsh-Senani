@@ -1,6 +1,7 @@
 package com.example.svsucss.HomeFragments.addContribution;
 
 import android.app.DatePickerDialog;
+import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.os.Build;
@@ -9,15 +10,20 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 
@@ -38,8 +44,10 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.Executor;
 
@@ -53,18 +61,21 @@ public class AddContriutionFragment extends Fragment {
     private LinearLayout layout_thanks;
     private ImageView iv_student, iv_staff;
     private TextView tv_student, tv_staff,tv_details;
-    private EditText studentName,studentEnrollmentNumber,staffName,staffDesignation,date,place,sponsi,packedfood,dryration;
+    private EditText studentName,studentEnrollmentNumber,date,place,sponsi,packedfood,dryration,timeDevoted,cashDonated;
     private int mYear, mMonth, mDay;
     private int currentSelected = 0,flag=0;
     MyPreferences myPreferences;
-    Button submit,contribution_submit,add_another;
+    Button submit,contribution_submit;
     FirebaseAuth firebaseAuth;
     String userType;
     FirebaseFirestore db;
     UserDataModel userDataModel;
     ContributionDataModel contributionDataModel;
+    AutoCompleteTextView staffName,staffDesignation;
+    ArrayAdapter<String> staffNameSuggestions,staffDesignationSuggestions;
+    ArrayList<String> staffNameList,staffDesigntionList;
 
-
+    private ProgressBar spinner;
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
@@ -73,6 +84,11 @@ public class AddContriutionFragment extends Fragment {
         firebaseAuth= FirebaseAuth.getInstance();
         db=FirebaseFirestore.getInstance();
         userDataModel=new UserDataModel();
+
+        staffNameList=new ArrayList<String>();
+        staffDesigntionList=new ArrayList<>();
+        staffDesigntionList.add("Professor");
+        staffDesigntionList.add("Head of Department");
 
         tv_details=root.findViewById(R.id.detail_type);
         studentName=root.findViewById(R.id.student_name);
@@ -92,8 +108,9 @@ public class AddContriutionFragment extends Fragment {
         layout_student=root.findViewById(R.id.student);
         student_details=root.findViewById(R.id.student_details);
 
+        cashDonated = root.findViewById(R.id.cash);
+        timeDevoted = root.findViewById(R.id.timedevoted);
         layout_other_details=root.findViewById(R.id.other_details);
-        layout_thanks=root.findViewById(R.id.layout_Thanks);
 
         int flag =1;
         myPreferences=new MyPreferences(getContext());
@@ -133,22 +150,14 @@ public class AddContriutionFragment extends Fragment {
             }
         });
 
-        add_another=root.findViewById(R.id.add_another);
-        add_another.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                layout_thanks.setVisibility(View.GONE);
-                tv_details.setText("Contribution Details");
-                layout_other_details.setVisibility(View.VISIBLE);
-
-            }
-        });
 
         onEditTextClick(studentName,studentEnrollmentNumber);
         onEditTextClickButton(studentEnrollmentNumber,submit);
         onEditTextClick(place,packedfood);
         onEditTextClick(packedfood,dryration);
-        onEditTextClick(dryration,sponsi);
+        onEditTextClick(dryration,cashDonated);
+        onEditTextClick(cashDonated,timeDevoted);
+        onEditTextClick(timeDevoted,sponsi);
         onEditTextClickButton(sponsi,contribution_submit);
 
 
@@ -172,6 +181,34 @@ public class AddContriutionFragment extends Fragment {
 
             myPreferences.setTypeOfUser("staff");
             userType="staff";
+
+            staffDesignationSuggestions= new ArrayAdapter<String>(getContext(),
+                    android.R.layout.select_dialog_item,staffDesigntionList);
+
+            staffDesignation.setThreshold(1);
+            staffDesignation.setAdapter(staffDesignationSuggestions);
+
+            db.collection("User").whereEqualTo("userType","staff")
+                    .get()
+                    .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                                               @Override
+                                               public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                                                   if (task.isSuccessful()) {
+                                                       for (QueryDocumentSnapshot document : task.getResult()) {
+                                                           staffNameList.add(document.get("name").toString());
+                                                       }
+
+                                                       Log.d("name",staffNameList.toString());
+
+                                                       staffNameSuggestions = new ArrayAdapter<String>(getContext(),
+                                                               android.R.layout.select_dialog_item,staffNameList);
+
+                                                       staffName.setThreshold(1);
+                                                       staffName.setAdapter(staffNameSuggestions);
+                                                   }
+                                               }
+                                           });
+
     }
 
     private void unselectElse(int current){
@@ -215,6 +252,8 @@ public class AddContriutionFragment extends Fragment {
     void onSubmit()
     {
         validatefields();
+//        spinner.setVisibility(View.GONE);
+
         if(userType.equals("student"))
         {
             userDataModel.setUserType(userType);
@@ -249,6 +288,7 @@ public class AddContriutionFragment extends Fragment {
                                     Toast.makeText(getContext(),"Enter Correct Enrollment Number",Toast.LENGTH_LONG).show();
                                     studentEnrollmentNumber.setError("Enter Correct Enrollment Number");
                                 }
+
                             }
                             else {
                                 Log.e(TAG, "Error getting documents: ", task.getException());
@@ -410,9 +450,43 @@ public class AddContriutionFragment extends Fragment {
             contributionDataModel.setAddersid(myPreferences.getUserId());
             contributionDataModel.setDate(date.getText().toString());
             contributionDataModel.setPlace(place.getText().toString());
-            contributionDataModel.setDry_ration(Double.valueOf(dryration.getText().toString()));
-            contributionDataModel.setPacked_food(Long.valueOf((packedfood.getText().toString())));
+            if(dryration.getText().toString().equals("")) {
+                contributionDataModel.setDry_ration(0.0);
+            }
+            else
+            {
+                contributionDataModel.setDry_ration(Double.valueOf(dryration.getText().toString()));
+
+            }
+
+            if(packedfood.getText().toString().equals("")) {
+                contributionDataModel.setPacked_food(Long.valueOf(0));
+            }
+            else {
+                contributionDataModel.setPacked_food(Long.valueOf((packedfood.getText().toString())));
+            }
+
             contributionDataModel.setSponsi(sponsi.getText().toString());
+
+            if(cashDonated.getText().toString().equals("")) {
+
+                contributionDataModel.setCash(0.0);
+            }
+            else
+            {
+                contributionDataModel.setCash(Double.valueOf(cashDonated.getText().toString()));
+
+            }
+
+            if(timeDevoted.getText().toString().equals(""))
+            {
+                contributionDataModel.setHoursDevoted(Long.valueOf(0));
+
+            }
+            else {
+                contributionDataModel.setHoursDevoted(Long.valueOf(timeDevoted.getText().toString()));
+
+            }
 
 
             db.collection("Contribution")
@@ -425,7 +499,7 @@ public class AddContriutionFragment extends Fragment {
 //                        layout_thanks.setVisibility(View.VISIBLE);
 //                        tv_details.setText("Thank You For Your Contribustion,\nTogether We Can Make A Difference!");
 
-                            new MaterialAlertDialogBuilder(getContext())
+                            Dialog dialog= new MaterialAlertDialogBuilder(getContext())
                                     .setTitle("Good Job!")
                                     .setMessage("Thank You For Your Contribustion,\nTogether We Can Make A Difference!")
                                     .setPositiveButton("Add Another", new DialogInterface.OnClickListener() {
@@ -437,9 +511,17 @@ public class AddContriutionFragment extends Fragment {
                                             sponsi.setText("");
                                             dryration.setText("");
                                             packedfood.setText("");
+                                            cashDonated.setText("");
+                                            timeDevoted.setText("");
                                         }
-                                    })
-                                    .show();
+                                    }).show();
+                            WindowManager.LayoutParams lp = dialog.getWindow().getAttributes();
+                            lp.dimAmount=0.5f;
+                            dialog.getWindow().setAttributes(lp);
+                            dialog.getWindow().addFlags(WindowManager.LayoutParams.FLAG_BLUR_BEHIND);
+
+
+
                         }
                     })
                     .addOnFailureListener(new OnFailureListener() {
@@ -472,19 +554,16 @@ public class AddContriutionFragment extends Fragment {
             place.setError("Enter Place");
         }
 
-        if(packedfood.getText().toString().equals(""))
+        if(packedfood.getText().toString().equals("") &&
+                dryration.getText().toString().equals("") &&
+                    cashDonated.getText().toString().equals("") &&
+                        timeDevoted.getText().toString().equals(""))
         {
             index=1;
 
-            packedfood.setError("Enter No. of Packed Food");
+            Toast.makeText(getContext(),"Enter your contribution",Toast.LENGTH_LONG).show();
         }
 
-        if(dryration.getText().toString().equals(""))
-        {
-            index=1;
-
-            dryration.setError("Enter Kgs of Dry Ration");
-        }
 
         if(sponsi.getText().toString().equals(""))
         {

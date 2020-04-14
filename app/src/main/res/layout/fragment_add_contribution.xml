@@ -4,8 +4,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:layout_marginBottom="50dp"
     android:layout_height="wrap_content"
     android:orientation="vertical"
+    android:fitsSystemWindows="true"
     android:layout_gravity="center_horizontal"
     android:gravity="center_horizontal"
     tools:context=".HomeFragments.addContribution.AddContriutionFragment">
@@ -13,15 +15,11 @@
     <ScrollView
         android:layout_width="match_parent"
         android:orientation="vertical"
-        android:layout_height="match_parent"
-        >
+        android:layout_height="wrap_content">
 
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
-
+    android:layout_height="wrap_content">
 
     <ImageView
         android:id="@+id/imageView"
@@ -280,7 +278,7 @@
         android:id="@+id/staff_details"
         android:orientation="vertical">
 
-        <EditText
+        <AutoCompleteTextView
             android:id="@+id/staff_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -303,7 +301,7 @@
             android:drawableLeft="@drawable/ic_enrollment_designation"/>
 
 
-        <EditText
+        <AutoCompleteTextView
             android:id="@+id/staff_designation"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -335,6 +333,7 @@
             android:textColor="@color/white"
             android:layout_marginLeft="40dp"
             android:layout_marginRight="40dp"
+            android:layout_marginBottom="20dp"
             android:layout_marginTop="20dp"
             />
     </LinearLayout>
@@ -443,6 +442,57 @@
             android:drawableTint="@color/gray"
             android:drawableLeft="@drawable/ic_dry_ration"/>
 
+
+        <EditText
+            android:id="@+id/cash"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginTop="8dp"
+            android:ems="10"
+            android:gravity=""
+            android:padding="10dp"
+            android:elevation="10dp"
+            android:focusableInTouchMode="true"
+            android:focusable="true"
+            android:layout_marginBottom="5dp"
+            android:background="@drawable/edittext_border"
+            android:hint="Cash donated"
+            android:layout_gravity="center_horizontal"
+            android:inputType="numberDecimal"
+            app:layout_constraintVertical_bias="0.353"
+            android:drawablePadding="10dp"
+            android:paddingLeft="10dp"
+            android:drawableTint="@color/gray"
+            android:drawableLeft="@drawable/ic_sponser"/>
+
+        <EditText
+            android:id="@+id/timedevoted"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginTop="8dp"
+            android:ems="10"
+            android:gravity=""
+            android:padding="10dp"
+            android:elevation="10dp"
+            android:focusableInTouchMode="true"
+            android:focusable="true"
+            android:layout_marginBottom="5dp"
+            android:background="@drawable/edittext_border"
+            android:hint="Time devoted for Volunteering"
+            android:layout_gravity="center_horizontal"
+            android:inputType="numberDecimal"
+            app:layout_constraintVertical_bias="0.353"
+            android:drawablePadding="10dp"
+            android:paddingLeft="10dp"
+            android:drawableTint="@color/gray"
+            android:drawableLeft="@drawable/ic_time"/>
+
+
+
         <EditText
             android:id="@+id/sponsi"
             android:layout_width="match_parent"
@@ -476,34 +526,11 @@
             android:elevation="10dp"
             android:background="@color/colorPrimary"
             android:textColor="@color/white"
+            android:layout_marginBottom="20dp"
             android:layout_marginLeft="40dp"
             android:layout_marginRight="40dp"
             android:layout_marginTop="20dp"
             />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/layout_Thanks"
-        android:visibility="gone"
-        app:layout_constraintTop_toBottomOf="@id/detail_type"
-        android:orientation="vertical">
-
-        <Button
-            android:id="@+id/add_another"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="ADD ANOTHER CONTRIBUTION"
-            android:padding="10dp"
-            android:elevation="10dp"
-            android:background="@color/colorPrimary"
-            android:textColor="@color/white"
-            android:layout_marginLeft="40dp"
-            android:layout_marginRight="40dp"
-            android:layout_marginTop="20dp"
-            />
-
     </LinearLayout>
 
 

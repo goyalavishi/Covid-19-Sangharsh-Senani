@@ -18,7 +18,8 @@
         android:padding="10dp"
         app:layout_constraintCircleRadius="5dp"
         android:baselineAligned="false"
-        android:orientation="horizontal"></LinearLayout>
+        android:orientation="horizontal"
+        tools:ignore="MissingConstraints"></LinearLayout>
 
     <LinearLayout
         android:id="@+id/contribution"
@@ -54,7 +55,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/contributorName"
+                android:id="@+id/name"
                 android:textSize="18dp"
                 android:text="name"
                 android:layout_marginLeft="10dp"
@@ -121,88 +122,64 @@
         </LinearLayout>
 
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:weightSum="2"
-        android:orientation="horizontal">
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:padding="5dp"
-            android:layout_weight="1"
-            android:layout_marginLeft="20dp"
-            android:id="@+id/date">
-            <ImageView
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:src="@drawable/ic_date"
-                android:tint="@color/gray"
-                />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="20dp"
-                android:id="@+id/tv_date"
-                android:text="date"
-                android:layout_marginLeft="10dp"
-                android:textColor="@color/gray"
-                />
+            android:weightSum="2"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="5dp"
+                android:layout_weight="1"
+                android:layout_marginLeft="20dp"
+                android:id="@+id/date">
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@drawable/ic_time"
+                    android:tint="@color/gray"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="20dp"
+                    android:id="@+id/tv_time"
+                    android:text="time"
+                    android:layout_marginLeft="10dp"
+                    android:textColor="@color/gray"
+                    />
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="5dp"
+                android:layout_weight="1"
+                android:layout_marginLeft="20dp"
+                android:id="@+id/sponsi">
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@drawable/ic_sponser"
+                    android:tint="@color/gray"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="20dp"
+                    android:id="@+id/tv_cash"
+                    android:text="0.0"
+                    android:layout_marginLeft="10dp"
+                    android:textColor="@color/gray"
+                    />
+            </LinearLayout>
+
+
         </LinearLayout>
-
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:padding="5dp"
-            android:layout_weight="1"
-            android:layout_marginLeft="20dp"
-            android:id="@+id/sponsi">
-            <ImageView
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:src="@drawable/ic_sponser"
-                android:tint="@color/gray"
-                />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="20dp"
-                android:id="@+id/tv_sponsi"
-                android:text="name"
-                android:layout_marginLeft="10dp"
-                android:textColor="@color/gray"
-                />
         </LinearLayout>
-
-
-    </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:padding="5dp"
-            android:layout_marginLeft="13dp"
-            android:id="@+id/place">
-            <ImageView
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:src="@drawable/ic_place"
-                android:tint="@color/gray"
-                />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="20dp"
-                android:id="@+id/tv_place"
-                android:text="date"
-                android:layout_marginLeft="10dp"
-                android:textColor="@color/gray"
-                />
-        </LinearLayout>
-
-    </LinearLayout>
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="10dp"

@@ -3,6 +3,7 @@ package com.example.svsucss;
 public class UserDataModel {
 
     String id;
+    String email;
     String userType;
     String name;
     String enrollmentNumber;
@@ -14,6 +15,14 @@ public class UserDataModel {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getUserType() {

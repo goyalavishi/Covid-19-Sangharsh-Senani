@@ -8,6 +8,26 @@ public class ContributionDataModel {
     String sponsi;
     Long packed_food;
     Double dry_ration;
+
+
+    public Double getCash() {
+        return cash;
+    }
+
+    public void setCash(Double cash) {
+        this.cash = cash;
+    }
+
+    public Long getHoursDevoted() {
+        return hoursDevoted;
+    }
+
+    public void setHoursDevoted(Long hoursDevoted) {
+        this.hoursDevoted = hoursDevoted;
+    }
+
+    Double cash;
+    Long hoursDevoted;
     String name;
 
 
