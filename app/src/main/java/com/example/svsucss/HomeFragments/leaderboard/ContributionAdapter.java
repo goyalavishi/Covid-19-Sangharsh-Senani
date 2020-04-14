@@ -47,6 +47,9 @@ public class ContributionAdapter extends RecyclerView.Adapter<ContributionAdapte
         holder.packedfood.setText(contributionList.get(position).getPacked_food()+ " Packets");
         holder.sponsi.setText(contributionList.get(position).getSponsi());
         holder.place.setText(contributionList.get(position).getPlace());
+        holder.cash.setText(contributionList.get(position).getCash()+" Rs");
+        holder.time.setText(contributionList.get(position).getHoursDevoted()+" Hrs");
+
     }
 
     @Override
@@ -59,7 +62,7 @@ public class ContributionAdapter extends RecyclerView.Adapter<ContributionAdapte
     public static class ContributionCardHolder extends RecyclerView.ViewHolder
     {
         TextView name,packedfood,dryration,sponsi,place;
-        TextView date;
+        TextView date,cash,time;
 
         public ContributionCardHolder(View itemView)
         {
@@ -70,6 +73,8 @@ public class ContributionAdapter extends RecyclerView.Adapter<ContributionAdapte
             sponsi=itemView.findViewById(R.id.tv_sponsi);
             packedfood=itemView.findViewById(R.id.tv_packed_food);
             dryration=itemView.findViewById(R.id.tv_dry_ration);
+            cash =itemView.findViewById(R.id.tv_cash);
+            time= itemView.findViewById(R.id.tv_time);
 
         }
 

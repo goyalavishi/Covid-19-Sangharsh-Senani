@@ -42,9 +42,9 @@ public class MyContribution extends Fragment {
     ContributionAdapter contributionAdapter;
     ContributionDataModel contributionDataModel;
     ArrayList<ContributionDataModel> contributionDataModelArrayList, dateFilteredModel;
-    Long totalpackets;
-    Double total_dry_ration;
-    TextView dryRation,packedFood;
+    Long totalpackets,totalhours;
+    Double total_dry_ration,totalcash;
+    TextView dryRation,packedFood,timeDevoted,cashDonated;
     MyPreferences myPreferences;
     String date;
 
@@ -75,10 +75,15 @@ public class MyContribution extends Fragment {
         Log.e("Hello ", "hello");
         contributionDataModelArrayList = new ArrayList<>();
         dateFilteredModel = new ArrayList<>();
-        totalpackets = Long.valueOf(0);
-        total_dry_ration = 0.0;
-        dryRation = root.findViewById(R.id.tv_dry_ration);
-        packedFood = root.findViewById(R.id.tv_packed_food);
+        totalpackets= Long.valueOf(0);
+        totalcash=0.0;
+        totalhours=Long.valueOf(0);
+        total_dry_ration=0.0;
+
+        dryRation=root.findViewById(R.id.tv_dry_ration);
+        packedFood=root.findViewById(R.id.tv_packed_food);
+        cashDonated = root.findViewById(R.id.tv_cash);
+        timeDevoted= root.findViewById(R.id.tv_time);
 
         firebaseFirestore = FirebaseFirestore.getInstance();
         firebaseFirestore.collection("Contribution")
@@ -99,10 +104,15 @@ public class MyContribution extends Fragment {
                                     contributionDataModel.setSponsi(document.getString("sponsi"));
                                     contributionDataModel.setDry_ration((document.getDouble("dry_ration")));
                                     contributionDataModel.setPacked_food(document.getLong("packed_food"));
+                                    contributionDataModel.setCash(document.getDouble("cash"));
+                                    contributionDataModel.setHoursDevoted(document.getLong("hoursDevoted"));
                                     contributionDataModel.setPlace(document.getString("place"));
 
                                     total_dry_ration += contributionDataModel.getDry_ration();
                                     totalpackets += contributionDataModel.getPacked_food();
+                                    totalcash +=contributionDataModel.getCash();
+                                    totalhours += contributionDataModel.getHoursDevoted();
+
                                     contributionDataModelArrayList.add(contributionDataModel);
                                 }
                             }
@@ -112,6 +122,8 @@ public class MyContribution extends Fragment {
                             recyclerView.setLayoutManager(layoutManager);
                             packedFood.setText(totalpackets.toString());
                             dryRation.setText(total_dry_ration.toString());
+                            cashDonated.setText(totalcash.toString());
+                            timeDevoted.setText(totalhours.toString());
 
                         }
 
@@ -175,6 +187,8 @@ public class MyContribution extends Fragment {
     {
         total_dry_ration = 0.0;
         totalpackets = Long.valueOf(0);
+        totalcash = 0.0;
+        totalhours = Long.valueOf(0);
 
         dateFilteredModel = new ArrayList<>();
 
@@ -186,9 +200,10 @@ public class MyContribution extends Fragment {
 
                     total_dry_ration += contributionDataModel.getDry_ration();
                     totalpackets += contributionDataModel.getPacked_food();
+                    totalhours += contributionDataModel.getHoursDevoted();
+                    totalcash += contributionDataModel.getCash();
 
                     dateFilteredModel.add(contributionDataModel);
-
                 }
             }
         }
@@ -199,6 +214,8 @@ public class MyContribution extends Fragment {
 
                     total_dry_ration += contributionDataModel.getDry_ration();
                     totalpackets += contributionDataModel.getPacked_food();
+                    totalhours += contributionDataModel.getHoursDevoted();
+                    totalcash += contributionDataModel.getCash();
 
                     dateFilteredModel.add(contributionDataModel);
             }
@@ -211,6 +228,7 @@ public class MyContribution extends Fragment {
         recyclerView.setLayoutManager(layoutManager);
         packedFood.setText(totalpackets.toString());
         dryRation.setText(total_dry_ration.toString());
-
+        cashDonated.setText(totalcash.toString());
+        timeDevoted.setText(totalhours.toString());
     }
 }

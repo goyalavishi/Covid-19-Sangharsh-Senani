@@ -34,7 +34,7 @@ public class LeaderboardFragment extends Fragment {
     ArrayList<ContributionDataModel> contributionDataModelArrayList,combined;
     ArrayList<String> users;
     Long totalpackets ,totalhours;
-    Double total_dry_ration , totalcash;
+    Double total_dry_ration,totalcash;
     TextView dryRation,packedFood,timeDevoted,cashDonated;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
