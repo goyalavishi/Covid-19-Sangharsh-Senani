@@ -1,5 +1,7 @@
 package com.example.svsucss.HomeFragments.contactUs;
 
+import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -15,7 +17,14 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.svsucss.Activities.MainActivity;
+import com.example.svsucss.Activities.futureModel;
 import com.example.svsucss.R;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import static androidx.constraintlayout.widget.Constraints.TAG;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -32,7 +41,8 @@ public class ContactUsFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    EditText name,email,subject,description;
+    EditText name, email, subject, description;
+
     public ContactUsFragment() {
         // Required empty public constructor
     }
@@ -64,50 +74,68 @@ public class ContactUsFragment extends Fragment {
         }
     }
 
+    FirebaseFirestore db;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View root= inflater.inflate(R.layout.fragment_contact_us, container, false);
+        View root = inflater.inflate(R.layout.fragment_contact_us, container, false);
 
-        name=root.findViewById(R.id.name);
-        subject=root.findViewById(R.id.subject);
-        email=root.findViewById(R.id.email);
-        email.setVisibility(View.GONE);
-        description=root.findViewById(R.id.description);
+        db = FirebaseFirestore.getInstance();
 
-        Button send= root.findViewById(R.id.sendmail);
+        name = root.findViewById(R.id.name);
+        subject = root.findViewById(R.id.subject);
+        email = root.findViewById(R.id.email);
+        description = root.findViewById(R.id.description);
+
+        final futureModel futureModel = new futureModel();
+
+        futureModel.setName(name.getText().toString());
+        futureModel.setEmail(email.getText().toString());
+        futureModel.setPhoneNumber(subject.getText().toString());
+        futureModel.setLocation(description.getText().toString());
+
+        Button send = root.findViewById(R.id.done);
         send.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
+                db.collection("Future")
+                        .add(futureModel)
+                        .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                                                  @Override
+                                                  public void onSuccess(DocumentReference documentReference) {
 
-                sendEmail();
+                                                      Dialog dialog= new MaterialAlertDialogBuilder(getContext())
+                                                              .setTitle("THANK YOU!")
+                                                              .setMessage("Together We Can Make A Difference!")
+                                                              .setPositiveButton("DONE", new DialogInterface.OnClickListener() {
+                                                                  @Override
+                                                                  public void onClick(DialogInterface dialog, int which) {
+
+                                                                      name.setText("");
+                                                                      subject.setText("");
+                                                                      email.setText("");
+                                                                      description.setText("");
+
+                                                                  }
+                                                              }).show();
+                                                  }
+                                              }
+                        );
+
+
+
+
             }
         });
+
         return root;
+
     }
 
-
-    protected void sendEmail() {
-        Log.i("Send email", "");
-        String[] TO = {"covidssharyana@gmail.com"};
-        String[] CC = {""};
-        Intent emailIntent = new Intent(Intent.ACTION_SEND);
-
-        emailIntent.setData(Uri.parse("mailto:"));
-        emailIntent.setType("text/plain");
-        emailIntent.putExtra(Intent.EXTRA_EMAIL, TO);
-        emailIntent.putExtra(Intent.EXTRA_CC, CC);
-        emailIntent.putExtra(Intent.EXTRA_SUBJECT, subject.getText().toString());
-        emailIntent.putExtra(Intent.EXTRA_TEXT, description.getText().toString());
-
-        try {
-            getActivity().startActivity(Intent.createChooser(emailIntent, "Send mail..."));
-            getActivity().finish();
-            Log.i("Finished sending email", "");
-        } catch (android.content.ActivityNotFoundException ex) {
-            Toast.makeText(getContext(), "There is no email client installed.", Toast.LENGTH_SHORT).show();
-        }
-    }
 }
+
+
+
