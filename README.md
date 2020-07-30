@@ -1,4 +1,5 @@
-# SVSU_CSS_Android_App
+# Covid-19 Sanrakshan Senani
+
 
 ##### •   Single platform to bridge the gap between the needy and donors of essential items 
 
